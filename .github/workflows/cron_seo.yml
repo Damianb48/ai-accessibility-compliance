@@ -1,0 +1,19 @@
+name: Generate SEO Blog Post
+
+on:
+  schedule:
+    - cron: '0 0 */2 * *' # every two days
+
+jobs:
+  generate-blog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Run blog generator
+        run: |
+          cd backend/scripts
+          python generate_seo_blog.py
